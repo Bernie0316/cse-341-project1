@@ -1,0 +1,13 @@
+{
+  "name": "cse-341-project1",
+  "version": "1.0.0",
+  "description": "My first project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "url": "git+https://github.com/Bernie0316/cse-341-project1.git"
+  },
+  "keywords": [],
+  "author": "Bernie Zhong",
+  "license": "ISC"
+}
