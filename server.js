@@ -1,6 +1,7 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongodb = require('./data/database');
+const mongoose =  require('mongoose');
 const app = express();
 
 const PORT = process.env.PORT || 3000;
@@ -16,12 +17,11 @@ app.use((req, res, next) => {
 });
 app.use('/', require('./routes'));
 
-mongodb.initDb((err) => {
-    if (err) {
-        console.log(err);
-    } else {
-        app.listen(PORT, () => {console.log(`Database is listing and node Running on port ${PORT}`)});
-    }
-});  
-
-app.listen(PORT, () => {console.log(`Running on port ${PORT}`);});
+mongoose.connect(process.env.MONGODB_URL)
+    .then(() => {
+        console.log('Connected to MongoDB');
+        app.listen(PORT, () => {console.log(`Running on port ${PORT}`);});
+    })
+    .catch((err) => {
+        console.error('Error connecting to MongoDB', err);
+    });
