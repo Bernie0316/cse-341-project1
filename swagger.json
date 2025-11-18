@@ -1,13 +1,14 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "User API",
-    "description": "User API",
+    "title": "Product API",
+    "description": "Product API",
     "version": "1.0.0"
   },
-  "host": "project1-919t.onrender.com",
+  "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
+    "http",
     "https"
   ],
   "paths": {
@@ -24,24 +25,34 @@
         }
       }
     },
-    "/users/": {
+    "/api-docs": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/products/": {
       "get": {
         "tags": [
-          "Users"
+          "Products"
         ],
         "description": "",
-        "produces": [
-          "application/json"
-        ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
       "post": {
         "tags": [
-          "Users"
+          "Products"
         ],
         "description": "",
         "parameters": [
@@ -51,16 +62,16 @@
             "schema": {
               "type": "object",
               "properties": {
-                "email": {
-                  "example": "any"
-                },
-                "username": {
-                  "example": "any"
-                },
                 "name": {
                   "example": "any"
                 },
-                "ipaddress": {
+                "price": {
+                  "example": "any"
+                },
+                "category": {
+                  "example": "any"
+                },
+                "stock": {
                   "example": "any"
                 }
               }
@@ -68,8 +79,11 @@
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "500": {
             "description": "Internal Server Error"
@@ -77,15 +91,31 @@
         }
       }
     },
-    "/users/{id}": {
+    "/products/{id}": {
       "get": {
         "tags": [
-          "Users"
+          "Products"
         ],
         "description": "",
-        "produces": [
-          "application/json"
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
         ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Products"
+        ],
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -97,46 +127,9 @@
         "responses": {
           "200": {
             "description": "OK"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Users"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
           },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "email": {
-                  "example": "any"
-                },
-                "username": {
-                  "example": "any"
-                },
-                "name": {
-                  "example": "any"
-                },
-                "ipaddress": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
+          "404": {
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -145,7 +138,7 @@
       },
       "delete": {
         "tags": [
-          "Users"
+          "Products"
         ],
         "description": "",
         "parameters": [
@@ -159,6 +152,9 @@
         "responses": {
           "204": {
             "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
