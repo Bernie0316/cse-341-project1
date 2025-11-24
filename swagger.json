@@ -5,7 +5,7 @@
     "description": "Product API",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "/https://project1-919t.onrender.com",
   "basePath": "/",
   "schemes": [
     "http",
